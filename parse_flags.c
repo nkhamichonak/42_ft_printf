@@ -6,7 +6,7 @@
 /*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:59:40 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/23 15:59:34 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:50:20 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,21 @@ void	left_align_n_override(t_flags *flags)
 	flags->zero_pad = 0;
 }
 
+void	get_precision(char **ptr, t_flags *flags)
+{
+	(*ptr)++;
+	flags->precision = 0;
+	while (is_digit(**ptr))
+	{
+		flags->precision = (flags->precision * 10) + (**ptr - '0');
+		(*ptr)++;
+	}
+}
+
 void	parse_flags(char **ptr, t_flags *flags)
 {
 	ft_memset(flags, 0, sizeof(flags));
+	flags->precision = -1;
 	while (**ptr && is_flag(**ptr))
 	{
 		if (**ptr == '#')
@@ -59,7 +71,7 @@ void	parse_flags(char **ptr, t_flags *flags)
 		if (**ptr == '+')
 			flags->force_sign = 1;
 		if (**ptr == '.')
-			flags->precision = 1;
+			get_precision(ptr, flags);
 		(*ptr)++;
 	}
 	// while (**ptr >= '0' && **ptr <= '9')
