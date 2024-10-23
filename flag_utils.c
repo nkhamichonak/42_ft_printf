@@ -1,32 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   flag_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 13:29:14 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/23 13:10:40 by nkhamich         ###   ########.fr       */
+/*   Created: 2024/10/23 15:27:19 by nkhamich          #+#    #+#             */
+/*   Updated: 2024/10/23 15:27:39 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "printf.h"
+#include "libft.h"
 
-#include <stdarg.h>
-#include <stdio.h>
-
-typedef struct s_flags
-{
-	int	left_align;
-	int	zero_pad;
-	int	precision;
-	int	min_width;
-	int	alt_form;
-	int	space;
-	int	force_sign;
-}	t_flags;
-
-void	parse_flags(char **ptr, t_flags *flags);
-
-#endif

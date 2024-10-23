@@ -6,32 +6,63 @@
 /*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:08:40 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/21 15:56:30 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:16:29 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	print_substr(const char *str, const char *ptr)
 {
-	va_list	args;
-	int		count;
+	char		*temp;
 
-	va_start(args, format);
-	while (*format)
+	temp = ft_substr(str, 0, (ptr - str));
+	if (temp == NULL)
 	{
-		if (*format == '%')
+		ft_putstr_fd("Allocation error in print_substr\n", 2);
+		return ;
+	}
+	ft_putstr_fd(temp, 1);
+	free (temp);
+}
+
+void	parse(const char *str, va_list args, int *count)
+{
+	t_flags		*flags;
+	char		*ptr;
+
+	ptr = str;
+
+	while (*str)
+	{
+		ptr = ft_strchr(str, '%');
+		if (ptr && *(ptr + 1) != '\0')
 		{
-			format++;
-			// function to establish format
-			// function to parse flags
-			// function to print the arg
+			print_substr(str, ptr);
+			parse_flags(&ptr + 1, flags);
+			// function to establish conversion specifier & print the arg
 		}
 		else
-			ft_putchar(*format);
-		format++;
+		{
+			ft_putchar_fd(*str, 1);
+			(*count)++;
+			str++;
+		}
+		// p++
 	}
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list		args;
+	int			count;
+
+	if (*format == '\0' || !format)
+		return (0);
+	count = 0;
+	va_start(args, format);
+	ft_parse(format, args, &count);
 	va_end(args);
 	return (count);
 }
