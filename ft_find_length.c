@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester.c                                           :+:      :+:    :+:   */
+/*   ft_find_length.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 11:28:48 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/23 17:47:39 by nkhamich         ###   ########.fr       */
+/*   Created: 2024/10/26 11:08:47 by natallia          #+#    #+#             */
+/*   Updated: 2024/10/27 13:12:52 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main(void)
+int	ft_hex_len(unsigned long int n)
 {
-	printf("%.0003d", 6);
-	return (0);
+	int	digit_count;
+
+	digit_count = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n /= 16;
+		digit_count++;
+	}
+	return (digit_count);
 }

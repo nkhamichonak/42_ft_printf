@@ -3,53 +3,58 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+         #
+#    By: natallia <natallia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 11:20:11 by nkhamich          #+#    #+#              #
-#    Updated: 2024/10/16 12:51:32 by nkhamich         ###   ########.fr        #
+#    Updated: 2024/10/27 17:02:42 by natallia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
-NAME_BONUS	= libft_bonus.a
+NAME		= libftprintf.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-SRC			= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
-				ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c \
-				ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
-				ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c \
-				ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
-				ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
-				ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
-				ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
-				ft_putendl_fd.c ft_putnbr_fd.c 
+AR			= ar
+ARFLAGS		= rcs
+SRC			= ft_printf.c ft_print_char.c ft_print_hex.c \
+				ft_print_int.c ft_print_pointer.c ft_print_string.c \
+				ft_print_unsigned.c ft_parse_flags.c ft_find_length.c \
+				print_utils.c flag_utils.c
 
-SRC_BONUS   = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
-              ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
-              ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+OBJ_DIR		= obj
+OBJ			= $(SRC:%.c=$(OBJ_DIR)/%.o)
 
-OBJ         = $(SRC:.c=.o)
-OBJ_BONUS   = $(SRC_BONUS:.c=.o)
+LIBFT_PATH = ./libft
+LIBFT = $(LIBFT_PATH)/libft.a
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo "Object directory created in $(NAME)."
+
+$(NAME): $(LIBFT) $(OBJ)
+	@cp $(LIBFT) $(NAME)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+	@echo "$(NAME) library created successfully."
+
+$(LIBFT):
+	@make -C $(LIBFT_PATH) all
 
 all: $(NAME)
 
-bonus: $(NAME_BONUS)
-
-$(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
-
-$(NAME_BONUS): $(OBJ) $(OBJ_BONUS)
-	ar -rcs $(NAME) $(OBJ) $(OBJ_BONUS)
+bonus: all
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS)
-
-.PHONY: fclean
+	@make -C $(LIBFT_PATH) clean
+	@rm -rf $(OBJ_DIR)
+	@echo "Object files cleaned in $(NAME)."
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
+	@make -C $(LIBFT_PATH) fclean
+	@rm -rf $(NAME)
+	@echo "$(NAME) library fully cleaned."
 
 re: fclean all
+
+.PHONY: all bonus clean fclean re libft
