@@ -3,33 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   flag_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:27:20 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/27 14:02:15 by natallia         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:36:21 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_flags	ft_initialise_flags(void)
+void	ft_initialise_flags(t_flags *flags)
 {
-	t_flags	flags;
-
-	flags.left_align = 0;
-	flags.zero_pad = 0;
-	flags.precision = 0;
-	flags.min_width = 0;
-	flags.alt_form = 0;
-	flags.space = 0;
-	flags.force_sign = 0;
-	flags.precision = -1;
-	return (flags);
+	flags->left_align = 0;
+	flags->zero_pad = 0;
+	flags->dot = 0;
+	flags->precision = 0;
+	flags->min_width = 0;
+	flags->alt_form = 0;
+	flags->space = 0;
+	flags->force_sign = 0;
 }
 
-int	ft_is_flag(int c)
+int	ft_is_valid_arg(const char *str)
 {
-	if (c == '%' || ft_is_specifier(c) || ft_is_type(c) || ft_isdigit(c))
+	while (ft_is_specifier(*str) || ft_isdigit(*str))
+		str++;
+	if (ft_is_type(*str))
 		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:08:03 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/27 13:13:26 by natallia         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:54:35 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static int	ft_signs_and_space(int num, t_flags *flags)
 		count += ft_putchar('+');
 	else if (flags->space)
 		count += ft_putchar(' ');
-	if (num < 0 || flags->force_sign || flags->space)
-		flags->min_width -= 1;
 	return (count);
 }
 
@@ -42,9 +40,12 @@ static int	ft_print_numstr(int num, char *num_str, t_flags *flags)
 		total_len = digit_len + 1;
 	else
 		total_len = digit_len;
+	if (flags->zero_pad)
+		count += ft_signs_and_space(num, flags);
 	if (!flags->left_align)
 		count += ft_fill_width(flags->min_width, flags->zero_pad, total_len);
-	count += ft_signs_and_space(num, flags);
+	if (!flags->zero_pad)
+		count += ft_signs_and_space(num, flags);
 	count += ft_fill_width(flags->precision, 1, ft_strlen(num_str));
 	count += ft_putstr(num_str);
 	if (flags->left_align)
@@ -60,7 +61,7 @@ int	ft_print_int(int num, t_flags *flags)
 
 	count = 0;
 	nbr = num;
-	if (flags->precision == 0 && num == 0)
+	if (flags->dot && flags->precision == 0 && num == 0)
 	{
 		count += ft_fill_width(flags->min_width, 0, 0);
 		return (count);

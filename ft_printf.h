@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:29:14 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/27 13:28:29 by natallia         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:25:15 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_flags
 {
 	int	left_align;
 	int	zero_pad;
+	int	dot;
 	int	precision;
 	int	min_width;
 	int	alt_form;
@@ -30,13 +31,13 @@ typedef struct s_flags
 }	t_flags;
 
 // FLAGS
-t_flags	ft_initialise_flags(void);
-char	ft_parse_flags(const char **ptr, t_flags *flags);
-int		ft_is_flag(int c);
+void	ft_initialise_flags(t_flags *flags);
+int		ft_is_valid_arg(const char *str);
+char	ft_parse_flags(const char **ptr, t_flags *flags, va_list args);
 int		ft_is_specifier(int c);
 int		ft_is_type(int c);
 
-// PRINT SPECIFIERS
+// PRINT ARGUMENTS
 int		ft_print_char(int c, t_flags *flags);
 int		ft_print_hex(unsigned int num, t_flags *flags, int upper_case);
 int		ft_print_int(int num, t_flags *flags);
@@ -48,8 +49,8 @@ int		ft_print_unsigned(unsigned int num, t_flags *flags);
 int		ft_putchar(unsigned char c);
 int		ft_putstr(const char *s);
 int		ft_fill_width(int min_width, int zero_pad, int size);
-int		ft_hex_len(unsigned long int n);
 char	*ft_hextoa(unsigned long int num);
+int		ft_hex_len(unsigned long int n);
 int		ft_printf(const char *format, ...);
 
 #endif

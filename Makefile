@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: natallia <natallia@student.42.fr>          +#+  +:+       +#+         #
+#    By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 11:20:11 by nkhamich          #+#    #+#              #
-#    Updated: 2024/10/27 17:02:42 by natallia         ###   ########.fr        #
+#    Updated: 2024/10/30 16:26:06 by nkhamich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ AR			= ar
 ARFLAGS		= rcs
 SRC			= ft_printf.c ft_print_char.c ft_print_hex.c \
 				ft_print_int.c ft_print_pointer.c ft_print_string.c \
-				ft_print_unsigned.c ft_parse_flags.c ft_find_length.c \
-				print_utils.c flag_utils.c
-
+				ft_print_unsigned.c ft_parse_flags.c print_utils.c\
+				flag_utils.c
 OBJ_DIR		= obj
 OBJ			= $(SRC:%.c=$(OBJ_DIR)/%.o)
 

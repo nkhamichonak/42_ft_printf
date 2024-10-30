@@ -3,26 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:10:57 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/27 13:13:36 by natallia         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:10:11 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_printable_len(const char *s, int precision)
+static int	ft_null_printable_len(t_flags *flags)
+{
+	if (flags->dot && flags->precision < 6)
+		return (0);
+	else
+		return (6);
+}
+
+static int	ft_printable_len(const char *s, t_flags *flags)
 {
 	int	len;
 
 	len = 0;
-	if (precision > 0)
+	if (flags->dot)
 	{
-		while (s[len] && len < precision)
+		while (s[len] && len < flags->precision)
 			len++;
 	}
-	else if (precision == -1)
+	else
 	{
 		while (s[len])
 			len++;
@@ -39,10 +47,10 @@ int	ft_print_string(const char *str, t_flags *flags)
 	if (str == NULL)
 	{
 		str = "(null)";
-		len = 6;
+		len = ft_null_printable_len(flags);
 	}
 	else
-		len = ft_printable_len(str, flags->precision);
+		len = ft_printable_len(str, flags);
 	if (flags->left_align == 1)
 	{
 		write (1, str, len);

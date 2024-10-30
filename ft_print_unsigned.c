@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:38:21 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/27 13:13:43 by natallia         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:03:06 by nkhamich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_print_unsigned(unsigned int num, t_flags *flags)
 	char	*num_str;
 
 	count = 0;
-	if (flags->precision == 0 && num == 0)
+	if (flags->dot && flags->precision == 0 && num == 0)
 	{
 		count += ft_fill_width(flags->min_width, 0, 0);
 		return (count);
