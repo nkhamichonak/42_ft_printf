@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:08:40 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/30 16:56:48 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:44:58 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ static int	ft_print_substr(const char *str, const char *ptr)
 	return (count);
 }
 
+static int	ft_print_till_end(const char **str)
+{
+	int	count;
+
+	count = 0;
+	count += ft_putstr(*str);
+	*str += ft_strlen(*str) - 1;
+	return (count);
+}
+
 static int	ft_print_arg(const char **str, const char **ptr, va_list args)
 {
 	int			count;
@@ -88,12 +98,12 @@ int	ft_printf(const char *format, ...)
 		if (ptr && ft_is_valid_arg(ptr + 1))
 			count += ft_print_arg(&format, &ptr, args);
 		else
-		{
-			count += ft_putstr(format);
-			format += ft_strlen(format) - 1;
-		}
+			count += ft_print_till_end(&format);
 		if (count < 0)
+		{
+			va_end(args);
 			return (-1);
+		}
 		format++;
 	}
 	va_end(args);

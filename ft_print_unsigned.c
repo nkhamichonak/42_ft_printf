@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:38:21 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/29 15:03:06 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:09:06 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_print_unsigned(unsigned int num, t_flags *flags)
 	}
 	num_str = ft_utoa(num);
 	if (num_str == NULL)
-		return (0);
+		return (-1);
 	count += ft_print_numstr(num_str, flags);
 	free (num_str);
 	return (count);

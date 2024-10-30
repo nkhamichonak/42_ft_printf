@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 10:59:07 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/29 18:15:08 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:04:12 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_print_pointer(void *ptr, t_flags *flags)
 		count += ft_fill_width(flags->min_width, flags->zero_pad, len);
 	ptr_str = ft_hextoa(address);
 	if (ptr_str == NULL)
-		return (0);
+		return (-1);
 	count += ft_putstr("0x") + ft_putstr(ptr_str);
 	if (flags->left_align)
 		count += ft_fill_width(flags->min_width, 0, len);

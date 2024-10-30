@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:08:03 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/29 17:54:35 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:02:54 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_print_int(int num, t_flags *flags)
 			nbr = -num;
 		num_str = ft_itoa(nbr);
 		if (num_str == NULL)
-			return (0);
+			return (-1);
 	}
 	count += ft_print_numstr(num, num_str, flags);
 	if (num != INT_MIN)

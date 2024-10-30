@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:14:47 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/30 16:41:27 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:44:58 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_putchar(unsigned char c)
 {
 	int	count;
-	
+
 	count = write (1, &c, 1);
 	if (count < 0)
 	{

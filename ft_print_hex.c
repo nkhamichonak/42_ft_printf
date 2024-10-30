@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:23:44 by natallia          #+#    #+#             */
-/*   Updated: 2024/10/30 16:24:58 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:44:58 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	ft_print_hex(unsigned int num, t_flags *flags, int upper_case)
 	}
 	num_str = ft_hextoa(num);
 	if (num_str == NULL)
-		return (0);
+		return (-1);
 	if (upper_case)
 	{
 		while (num_str[i])
