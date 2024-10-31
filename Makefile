@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+         #
+#    By: natallia <natallia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 11:20:11 by nkhamich          #+#    #+#              #
-#    Updated: 2024/10/30 16:26:06 by nkhamich         ###   ########.fr        #
+#    Updated: 2024/10/31 20:05:34 by natallia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,14 @@ OBJ			= $(SRC:%.c=$(OBJ_DIR)/%.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
+all: $(NAME)
+
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo "Object directory created in $(NAME)."
+	@echo "Object directory created for $(NAME)."
 
 $(NAME): $(LIBFT) $(OBJ)
 	@cp $(LIBFT) $(NAME)
@@ -40,14 +42,12 @@ $(NAME): $(LIBFT) $(OBJ)
 $(LIBFT):
 	@make -C $(LIBFT_PATH) all
 
-all: $(NAME)
-
-bonus: all
+bonus: $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean
 	@rm -rf $(OBJ_DIR)
-	@echo "Object files cleaned in $(NAME)."
+	@echo "Object files cleaned for $(NAME)."
 
 fclean: clean
 	@make -C $(LIBFT_PATH) fclean

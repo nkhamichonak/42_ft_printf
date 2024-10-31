@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:29:14 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/30 16:25:15 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:46:21 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <limits.h>
-# include <stdio.h>
 # include "libft/libft.h"
 
 typedef struct s_flags
@@ -52,5 +51,6 @@ int		ft_fill_width(int min_width, int zero_pad, int size);
 char	*ft_hextoa(unsigned long int num);
 int		ft_hex_len(unsigned long int n);
 int		ft_printf(const char *format, ...);
+int		ft_print_substr(const char *str, const char *ptr);
 
 #endif

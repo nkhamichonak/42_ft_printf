@@ -6,7 +6,7 @@
 #    By: natallia <natallia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 11:20:11 by nkhamich          #+#    #+#              #
-#    Updated: 2024/10/27 13:06:02 by natallia         ###   ########.fr        #
+#    Updated: 2024/10/31 19:53:30 by natallia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,18 +31,18 @@ OBJ_DIR		= obj
 OBJ			= $(SRC:%.c=$(OBJ_DIR)/%.o)
 OBJ_BONUS   = $(SRC_BONUS:%.c=$(OBJ_DIR)/%.o)
 
+all: $(NAME)
+
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo "Object directory created in $(NAME)."
+	@echo "Object directory created for $(NAME)."
 
 $(NAME): $(OBJ)
 	@ar -rcs $(NAME) $(OBJ)
 	@echo "$(NAME) library created successfully."
-
-all: $(NAME)
 
 bonus: $(NAME) $(OBJ_BONUS)
 	@ar -rcs $(NAME) $(OBJ_BONUS)
@@ -51,7 +51,7 @@ bonus: $(NAME) $(OBJ_BONUS)
 clean:
 	@if [ -d $(OBJ_DIR) ]; then \
 		rm -rf $(OBJ_DIR); \
-		echo "Object files cleaned in $(NAME)."; \
+		echo "Object files cleaned for $(NAME)."; \
 	fi
 
 fclean: clean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkhamich <nkhamich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: natallia <natallia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:55:56 by nkhamich          #+#    #+#             */
-/*   Updated: 2024/10/17 12:49:59 by nkhamich         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:48:28 by natallia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
-# include <strings.h>
 # include <limits.h>
-# include <ctype.h>
-# include <stdint.h>
-# include <stdio.h>
 
 typedef struct s_list
 {
